@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Beautiful Photo Upload</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Your Photo</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" id="photoInput" name="photo" accept="image/*" style="display: none;" onchange="this.form.submit();">
+            <button type="button" class="upload-btn" onclick="document.getElementById('photoInput').click();">
+                Click or Upload Photo
+            </button>
+        </form>
+        {% if photo %}
+        <div class="photo-display">
+            <h2>Latest Uploaded Photo:</h2>
+            <img src="{{ url_for('static', filename='uploads/' ~ photo) }}" alt="Uploaded Photo">
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
